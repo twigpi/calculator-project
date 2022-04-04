@@ -30,20 +30,20 @@ const CALCULATOR_STATUS_MAP =
 
 const MATH_OPERATION =
 {
-    "Add" : "Add",
-    "Subtract" : "Subtract",
-    "Multiply" : "Multiply",
-    "Divide" : "Divide",
-    "Nully" : "Nully"
+    "add" : "add",
+    "subtract" : "subtract",
+    "multiply" : "multiply",
+    "divide" : "divide",
+    "nully" : "nully"
 }
 
 const MATH_OPERATION_MAP =
 {
-    Add :         ["+", "Augend", "Addend", "Sum", "of", "and", "adding"],
-    Subtract :    ["-", "Minuend", "Subtrahend", "Difference", "between", "and", "subtracting"],
-    Multiply :    ["*", "Multiplicand", "Multiplier", "Product", "of", "times", "multiplying"],
-    Divide :      ["/", "Dividend", "Divisor", "Quotient", "of", "divided by", "dividing"],
-    Nully :       ["E", "Nullend", "Nullifier", "Nullent", "of", "nullified by", "nullifying"]
+    add :         ["+", "Augend", "Addend", "Sum", "of", "and", "adding"],
+    subtract :    ["-", "Minuend", "Subtrahend", "Difference", "between", "and", "subtracting"],
+    multiply :    ["*", "Multiplicand", "Multiplier", "Product", "of", "times", "multiplying"],
+    divide :      ["/", "Dividend", "Divisor", "Quotient", "of", "divided by", "dividing"],
+    nully :       ["E", "Nullend", "Nullifier", "Nullent", "of", "nullified by", "nullifying"]
 }
 
 let abacus;
@@ -180,7 +180,7 @@ function getOperator()
         console.log("index out of bounds for inputArray in getOperator()");
 
     if (MATH_OPERATION.hasOwnProperty(operator) === false)
-        operator = MATH_OPERATION.Nully;
+        operator = MATH_OPERATION.nully;
     else
         operator = MATH_OPERATION[operator];
 
@@ -249,7 +249,7 @@ function setStatus(status)
 function setMode(operator)
 {
     if (MATH_OPERATION.hasOwnProperty(operator) === false)
-        operator = MATH_OPERATION.Nully;
+        operator = MATH_OPERATION.nully;
 
     let textField;
 

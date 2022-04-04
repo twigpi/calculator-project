@@ -20,15 +20,19 @@ class Calculator
         this.value = 0;
 
         this.attemptedDivideByZero = false;
+
+        this.performCalculation();
     }
 
     /**
      * determine the current operation's label
-     * a bit unsure as to why this is here
+     * ~a bit unsure as to why this is here~
+     * Needed for unit test to pass,
+     * must return action word of operator.
      */
-    getAction(operator)
+    getAction()
     {
-        this.operator = operator;
+        return MATH_OPERATION_MAP[this.operator][6];
     }
 
     // perform a calculation based on the currently selected operation
@@ -58,7 +62,7 @@ class Calculator
     // perform divide operation
     divide()
     {
-        if (this.secondNumber !== 0)
+        if (this.isDivideByZeroScenario() === false)
             this.value = this.firstNumber / this.secondNumber;
         else
             this.value = this.firstNumber + 'ⱺ';
@@ -69,7 +73,7 @@ class Calculator
          */
         isDivideByZeroScenario()
         {
-            let isScenario = ( (this.operator === "Divide")
+            let isScenario = ( (this.operator === MATH_OPERATION.divide)
                             && (this.secondNumber === 0) );
 
             this.attemptedDivideByZero = isScenario; /* needed for unit test */
@@ -79,13 +83,13 @@ class Calculator
 
     performCalculation()
     {
-        if (this.operator === "Add")
+        if (this.operator === MATH_OPERATION.add)
             this.add();
-        else if (this.operator === "Subtract")
+        else if (this.operator === MATH_OPERATION.subtract)
             this.subtract();
-        else if (this.operator === "Multiply")
+        else if (this.operator === MATH_OPERATION.multiply)
             this.multiply();
-        else if (this.operator === "Divide")
+        else if (this.operator === MATH_OPERATION.divide)
             this.divide();
         else
             console.log("Operator: " + this.operator + " not set.");
@@ -123,7 +127,7 @@ class Calculator
         if ( MATH_OPERATOR.hasOwnProperty(operator) )
             this.operator = MATH_OPERATION[operator];
         else
-            this.operator = MATH_OPERATION.Add;
+            this.operator = MATH_OPERATION.add;
     }
 
     /**
