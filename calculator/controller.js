@@ -161,7 +161,7 @@ function getOperator()
     if (0 <= index && index <= inputArray.length)
         operator = inputArray[index].value;
     else
-        alert("index out of bounds for inputArray in getOperator()");
+        console.log("index out of bounds for inputArray in getOperator()");
 
     if (MATH_OPERATOR.hasOwnProperty(operator) === false)
         operator = "Nully";

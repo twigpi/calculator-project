@@ -82,7 +82,7 @@ class Calculator
         else if (this.operator === "Divide")
             this.divide();
         else
-            alert("Operator: " + this.operator + " not set.");
+            console.log("Operator: " + this.operator + " not set.");
     }
 
     /**
