@@ -30,7 +30,7 @@ class Calculator
     // perform a calculation based on the currently selected operation
     operate()
     {
-        performCalculation();
+        this.performCalculation();
     }
 
     // perform addition operation
