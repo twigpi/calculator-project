@@ -1,3 +1,21 @@
+const MATH_OPERATION =
+{
+    "add" : "add",
+    "subtract" : "subtract",
+    "multiply" : "multiply",
+    "divide" : "divide",
+    "nully" : "nully"
+}
+
+const MATH_OPERATION_MAP =
+{
+    add :         ["+", "Augend", "Addend", "Sum", "of", "and", "adding"],
+    subtract :    ["-", "Minuend", "Subtrahend", "Difference", "between", "and", "subtracting"],
+    multiply :    ["*", "Multiplicand", "Multiplier", "Product", "of", "times", "multiplying"],
+    divide :      ["/", "Dividend", "Divisor", "Quotient", "of", "divided by", "dividing"],
+    nully :       ["E", "Nullend", "Nullifier", "Nullent", "of", "nullified by", "nullifying"]
+}
+
 class Calculator
 {
     firstNumber;
