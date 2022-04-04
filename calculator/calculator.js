@@ -5,10 +5,12 @@ class Calculator
     operator;
     value;
 
+    attemptedDivideByZero;
+
     /**
-     * @param {Number} firstNumber
-     * @param {Number} secondNumber
-     * @param {MATH_OPERATOR} operator
+     * @param {number} firstNumber
+     * @param {number} secondNumber
+     * @param {MATH_OPERATION} operator
      */
     constructor(firstNumber, secondNumber, operator)
     {
@@ -16,15 +18,17 @@ class Calculator
         this.secondNumber = secondNumber;
         this.operator = operator;
         this.value = 0;
+
+        this.attemptedDivideByZero = false;
     }
 
     /**
      * determine the current operation's label
      * a bit unsure as to why this is here
      */
-    getAction()
+    getAction(operator)
     {
-        return this.operator;
+        this.operator = operator;
     }
 
     // perform a calculation based on the currently selected operation
@@ -61,12 +65,14 @@ class Calculator
     }
 
         /**
-         * @returns Boolean
+         * @returns boolean
          */
         isDivideByZeroScenario()
         {
             let isScenario = ( (this.operator === "Divide")
                             && (this.secondNumber === 0) );
+
+            this.attemptedDivideByZero = isScenario; /* needed for unit test */
 
             return isScenario;
         }
@@ -86,7 +92,7 @@ class Calculator
     }
 
     /**
-     * @param {Number} firstNumber
+     * @param {number} firstNumber
      */
     setFirstNumber(firstNumber)
     {
@@ -98,7 +104,7 @@ class Calculator
     }
 
     /**
-     * @param {Number} secondNumber
+     * @param {number} secondNumber
      */
     setSecondNumber(secondNumber)
     {
@@ -110,18 +116,18 @@ class Calculator
     }
 
     /**
-     * @param {MATH_OPERATOR} operator
+     * @param {MATH_OPERATION} operator
      */
     setOperator(operator)
     {
         if ( MATH_OPERATOR.hasOwnProperty(operator) )
-            this.operator = operator;
+            this.operator = MATH_OPERATION[operator];
         else
-            this.operator = "Add";
+            this.operator = MATH_OPERATION.Add;
     }
 
     /**
-     * @returns Number
+     * @returns number
      */
     getValue()
     {

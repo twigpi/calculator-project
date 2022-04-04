@@ -1,33 +1,49 @@
 const CALCULATOR_STATUS =
 {
-    Initial :       ["Initial", "Calculator state before anything happens."],
-    Ready :         ["Ready", "Awaiting user input."],
-    Inputting :     ["Inputting", "Receiving input."],
-    Checking :      ["Checking", "Checking for valid input."],
-    Sanitizing :    ["Cleaning", "Sanitizing nonnumerical data with 70% isopropyl alchohol."],
-    Calculating :   ["Calculated", "Numbers working according to plan."],
-    Results :       ["Results", "The ${resultName} ${prepo} ${firstTerm} ${conjunct} ${secondTerm} is ${value}."],
-    Error :         ["Error", "An error has occurred. Hope the developer fixes it soon."],
-    Gge :           ["Gge", "ollǝɥ"],
-    Unknown :       ["Unknown State", "We're not in Kansas anymore."],
-    DivideByZero :  ["Divide by Zero", "Warning: Dividing by zero is not allowed until the ⱺ numberline is discovered."]
+    "Initial" : "Initial",
+    "Ready" : "Ready",
+    "Inputting" : "Inputting",
+    "Checking" : "Checking",
+    "Sanitizing" : "Sanitizing",
+    "Calculating" : "Calculating",
+    "Results" : "Results",
+    "Error" : "Error",
+    "Gge" : "Gge",
+    "Unknown" : "Unknown",
+    "DivideByZero" : "DivideByZero"
 }
 
-const CALCULATOR_MODE =
+const CALCULATOR_STATUS_MAP =
 {
-    Add :       "Adding",
-    Subtract :  "Subtracting",
-    Multiply :  "Multiplying" ,
-    Divide :    "Dividing"
+    Initial :       "Calculator state before anything happens.",
+    Ready :         "Awaiting user input.",
+    Inputting :     "Receiving input.",
+    Checking :      "Checking for valid input.",
+    Sanitizing :    "Sanitizing nonnumerical data with 70% isopropyl alchohol.",
+    Calculating :   "Numbers working according to plan.",
+    Results :       "Boom, ${verbing}. The ${resultName} ${prepo} ${firstTerm} ${conjunct} ${secondTerm} is ${value}.",
+    Error :         "An error has occurred. Hope the developer fixes it soon.",
+    Gge :           "ollǝɥ",
+    Unknown :       "We're not in Kansas anymore.",
+    DivideByZero :  "Warning: Dividing by zero is not allowed until the ⱺ numberline is discovered."
 }
 
-const MATH_OPERATOR =
+const MATH_OPERATION =
 {
-    "Add" :         ["+", "Augend", "Addend", "Sum", "of", "and"],
-    "Subtract" :    ["-", "Minuend", "Subtrahend", "Difference", "between", "and"],
-    "Multiply" :    ["*", "Multiplicand", "Multiplier", "Product", "of", "times"],
-    "Divide" :      ["/", "Dividend", "Divisor", "Quotient", "of", "divided by"],
-    "Nully" :       ["E", "Nullend", "Nullifier", "Nullent", "of", "nullified by"]
+    "Add" : "Add",
+    "Subtract" : "Subtract",
+    "Multiply" : "Multiply",
+    "Divide" : "Divide",
+    "Nully" : "Nully"
+}
+
+const MATH_OPERATION_MAP =
+{
+    Add :         ["+", "Augend", "Addend", "Sum", "of", "and", "adding"],
+    Subtract :    ["-", "Minuend", "Subtrahend", "Difference", "between", "and", "subtracting"],
+    Multiply :    ["*", "Multiplicand", "Multiplier", "Product", "of", "times", "multiplying"],
+    Divide :      ["/", "Dividend", "Divisor", "Quotient", "of", "divided by", "dividing"],
+    Nully :       ["E", "Nullend", "Nullifier", "Nullent", "of", "nullified by", "nullifying"]
 }
 
 let abacus;
@@ -87,7 +103,7 @@ function calculate()
     }
     else
     {
-        result = CALCULATOR_STATUS.DivideByZero[0];
+        result = CALCULATOR_STATUS.DivideByZero;
         setStatus("DivideByZero");
     }
 
@@ -140,7 +156,7 @@ function clearResult()
 
 /**
  * get the selected operator from the UI
- * @returns Operators
+ * @returns MATH_OPERATION
  */
 function getOperator()
 {
@@ -163,8 +179,10 @@ function getOperator()
     else
         console.log("index out of bounds for inputArray in getOperator()");
 
-    if (MATH_OPERATOR.hasOwnProperty(operator) === false)
-        operator = "Nully";
+    if (MATH_OPERATION.hasOwnProperty(operator) === false)
+        operator = MATH_OPERATION.Nully;
+    else
+        operator = MATH_OPERATION[operator];
 
     return operator;
 }
@@ -181,25 +199,26 @@ function setStatus(status)
 
     let textField = document.getElementById("calculator-status");
 
-    textField.innerText = CALCULATOR_STATUS[status][0];
+    textField.innerText = CALCULATOR_STATUS[status];
     if (status !== "Results")
-        displayMessage(CALCULATOR_STATUS[status][1]);
+        displayMessage(CALCULATOR_STATUS_MAP[status]);
     else
         DisplayResultsMessage();
 }
 
     function DisplayResultsMessage()
     {
-        let template = CALCULATOR_STATUS.Results[1];
+        let template = CALCULATOR_STATUS_MAP.Results;
         let operator = getOperator();
         const termsMap =
         {
-            "resultName" : MATH_OPERATOR[operator][3],
-            "prepo" : MATH_OPERATOR[operator][4],
-            "firstTerm" : this.abacus.firstNumber,
-            "conjunct" : MATH_OPERATOR[operator][5],
-            "secondTerm" : this.abacus.secondNumber,
-            "value" : this.abacus.getValue()
+            "resultName" : MATH_OPERATION_MAP[operator][3],
+            "prepo" : MATH_OPERATION_MAP[operator][4],
+            "firstTerm" : String(this.abacus.firstNumber),
+            "conjunct" : MATH_OPERATION_MAP[operator][5],
+            "secondTerm" : String(this.abacus.secondNumber),
+            "value" : String( this.abacus.getValue() ),
+            "verbing" : MATH_OPERATION_MAP[operator][6]
         } ;
         let message = interpolate(template, termsMap);
         displayMessage(message);
@@ -209,8 +228,8 @@ function setStatus(status)
      * Helper function to perform interpolation on stored template literals.
      * termsMap is an object containing the keywords to search for in template
      *  and their replacement text.
-     * @param {String} template
-     * @param {Object} termsMap
+     * @param {string} template
+     * @param {Object.<string, string>} termsMap
      * @returns String
      */
     function interpolate(template, termsMap)
@@ -224,29 +243,29 @@ function setStatus(status)
     }
 
 /**
- * Calculator mode is what operation will be used.
- * @param {MATH_OPERATOR} operator
+ * Sets text and label fields according to current operator
+ * @param {MATH_OPERATION} operator
  */
 function setMode(operator)
 {
-    if (MATH_OPERATOR.hasOwnProperty(operator) === false)
-        operator = "Nully";
+    if (MATH_OPERATION.hasOwnProperty(operator) === false)
+        operator = MATH_OPERATION.Nully;
 
     let textField;
 
     textField = document.getElementById("calculator-operation");
-    textField.innerText = MATH_OPERATOR[operator][0];
+    textField.innerText = MATH_OPERATION_MAP[operator][0];
 
     let labelText;
 
     labelText = document.getElementById("div-term-one-label")
-    labelText.innerText = MATH_OPERATOR[operator][1];
+    labelText.innerText = MATH_OPERATION_MAP[operator][1];
 
     labelText = document.getElementById("div-term-two-label")
-    labelText.innerText = MATH_OPERATOR[operator][2];
+    labelText.innerText = MATH_OPERATION_MAP[operator][2];
 
     labelText = document.getElementById("div-calculation-result-label")
-    labelText.innerText = MATH_OPERATOR[operator][3];
+    labelText.innerText = ( MATH_OPERATION_MAP[operator][3] + ':' );
 }
 
 /**

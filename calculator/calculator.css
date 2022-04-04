@@ -90,7 +90,7 @@
 {
     width: 100%;
 
-    text-align: center;
+    text-align: left;
 }
 
 #button-perform-calculation
@@ -156,11 +156,15 @@
     #div-status-label
     {
         grid-area: div-status-label;
+
+        justify-self: right;
     }
 
     #div-status
     {
         grid-area: div-status;
+
+        justify-self: left;
     }
 
     #div-add-operation
@@ -228,6 +232,8 @@
     #div-calculation-result-label
     {
         grid-area: div-calculation-result-label;
+
+        justify-self: right;
     }
 
     .div-calculation-result
@@ -264,7 +270,7 @@
     align-items: center;
     grid-template-areas:
         "div-title div-status-label div-status div-operation"
-        ". . div-calculation-result-label div-calculation-result"
+        ". div-calculation-result-label div-calculation-result ."
         "div-term-one-label div-term-one-label div-term-two-label div-term-two-label"
         "div-term-one-input div-term-one-input div-term-two-input div-term-two-input"
         "div-add-operation div-subtract-operation div-multiply-operation div-divide-operation"
