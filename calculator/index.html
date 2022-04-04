@@ -2,11 +2,117 @@
 <html>
     <head>
         <title>Calculator</title>
-        <script type="text/javascript" src="controller.js"></script>
-        <script type="text/javascript" src="calculator.js"></script>
+        <script type="text/javascript" src="calculator.js" defer></script>
+        <script type="text/javascript" src="controller.js" defer></script>
         <link rel="stylesheet" type="text/css" href="calculator.css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body>
-        <!-- Fill in html here -->
+        <div id="calculator-header">
+            <h1>Calc u later</h1>
+        </div>
+
+        <div id="grid-calculator">
+
+            <div id="div-title">
+                <span id="calculator-title" title="twigpi instruments">
+                    ti-47
+                </span>
+            </div>
+
+            <div id="div-status-label">
+                <label for="calculator-status">Status:</label>
+            </div>
+            <div id="div-status">
+                <span id="calculator-status">Initial</span>
+            </div>
+
+            <div id="div-term-one-label">
+                <label id="label-term-one" for="input-term-one">
+                    Addend 1
+                </label>
+            </div>
+            <div id="div-term-one-input">
+                <input id="inputNumberOne" class="input-term-one input-term" type="number" autofocus>
+            </div>
+
+            <div id="div-operation">
+                <span id="calculator-operation">+</span>
+            </div>
+
+            <div id="div-term-two-label">
+                <label id="label-term-two" for="input-term-two">
+                    Addend 2
+                </label>
+            </div>
+            <div id="div-term-two-input">
+                <input id="inputNumberTwo" class="input-term-two input-term" type="number">
+            </div>
+
+            <div id="div-add-operation">
+                <label id="left-label-add" for="add" class="operation-label">
+                    Add
+                </label>
+                <input id="add" class="add-operation operators" type="radio" name="operation-panel" value="Add" checked>
+                <label id="right-label-add" for="add" class="operation-label">
+                    Add
+                </label>
+            </div>
+
+            <div id="div-subtract-operation">
+                <label id="left-label-subtract" for="subtract" class="operation-label">
+                    Subtract
+                </label>
+                <input id="subtract" class="subtract-operation operators" type="radio" name="operation-panel" value="Subtract">
+                <label id="right-label-subtract" for="subtract" class="operation-label">
+                    Subtract
+                </label>
+            </div>
+
+            <div id="div-multiply-operation">
+                <label id="left-label-multiply" for="multiply" class="operation-label">
+                    Multiply
+                </label>
+                <input id="multiply" class="multiply-operation operators" type="radio" name="operation-panel" value="Multiply">
+                <label id="right-label-multiply" for="multiply" class="operation-label">
+                    Multiply
+                </label>
+            </div>
+
+            <div id="div-divide-operation">
+                <label id="left-label-divide" for="divide" class="operation-label">
+                    Divide
+                </label>
+                <input id="divide" class="divide-operation operators" type="radio" name="operation-panel" value="Divide">
+                <label id="right-label-divide" for="divide" class="operation-label">
+                    Divide
+                </label>
+            </div>
+
+            <div id="div-calculate-button">
+                <button id="button-perform-calculation" class="operate" type="submit">=</button>
+            </div>
+
+            <div id="div-calculation-result-label">
+                <label id="label-calculation-result">
+                    Sum
+                </label>
+            </div>
+            <div id="result" class="div-calculation-result">
+                <p id="calculation-result">twigpi</p>
+            </div>
+
+            <div id="div-message">
+                <span id="calculator-message">Awaiting input.</span>
+            </div>
+
+            <div id="div-reset-button" class="clear">
+                <button id="button-reset">
+                    Clear
+                </button>
+            </div>
+
+        </div>
+
     </body>
 </html>
