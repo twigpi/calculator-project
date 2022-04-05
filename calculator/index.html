@@ -49,11 +49,13 @@
                 <input type="number" id="inputNumberTwo" class="input-term-two input-term">
             </div>
 
+            <form class="operators"></form>
+
             <div id="div-add-operation">
                 <label for="add" id="left-label-add" class="operation-label">
                     Add
                 </label>
-                <input type="radio" id="add" class="operators" name="radio-operators" value="add" checked>
+                <input type="radio" id="add" class="input-operators" name="radio-operators" value="add" form="operators" checked>
                 <label for="add" id="right-label-add" class="operation-label">
                     Add
                 </label>
@@ -63,7 +65,7 @@
                 <label for="subtract" id="left-label-subtract" class="operation-label">
                     Subtract
                 </label>
-                <input type="radio" id="subtract" class="operators" name="radio-operators" value="subtract">
+                <input type="radio" id="subtract" class="input-operators" name="radio-operators" value="subtract" form="operators">
                 <label for="subtract" id="right-label-subtract" class="operation-label">
                     Subtract
                 </label>
@@ -73,7 +75,7 @@
                 <label for="multiply" id="left-label-multiply" class="operation-label">
                     Multiply
                 </label>
-                <input type="radio" id="multiply" class="operators" name="radio-operators" value="multiply">
+                <input type="radio" id="multiply" class="input-operators" name="radio-operators" value="multiply" form="operators">
                 <label for="multiply" id="right-label-multiply" class="operation-label">
                     Multiply
                 </label>
@@ -83,15 +85,22 @@
                 <label for="divide" id="left-label-divide" class="operation-label">
                     Divide
                 </label>
-                <input type="radio" id="divide" class="operators" name="radio-operators" value="divide">
+                <input type="radio" id="divide" class="input-operators" name="radio-operators" value="divide" form="operators">
                 <label for="divide" id="right-label-divide" class="operation-label">
                     Divide
                 </label>
             </div>
 
+            <form class="buttons"></form>
+
             <div id="div-calculate-button">
-                <button id="button-perform-calculation" class="operate buttons">=</button>
+                <button id="button-perform-calculation" class="operate" form="buttons">=</button>
             </div>
+
+            <div id="div-reset-button">
+                <button id="button-reset" class="clear" form="buttons">Clear</button>
+            </div>
+
 
             <div id="div-calculation-result-label">
                 <label id="label-calculation-result">
@@ -106,9 +115,7 @@
                 <span id="calculator-message">Awaiting input.</span>
             </div>
 
-            <div id="div-reset-button">
-                <button id="button-reset" class="clear buttons">Clear</button>
-            </div>
+
 
         </div>
 
