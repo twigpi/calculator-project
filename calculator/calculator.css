@@ -86,7 +86,7 @@
     text-align: center;
 }
 
-#calculation-result
+.calculation-result
 {
     width: 100%;
 
@@ -236,7 +236,7 @@
         justify-self: right;
     }
 
-    .div-calculation-result
+    #div-calculation-result
     {
         grid-area: div-calculation-result;
 
@@ -323,7 +323,7 @@
         text-align: right;
     }
 
-    #calculation-result
+    .calculation-result
     {
         text-align: right;
     }

@@ -85,7 +85,7 @@ function calculate()
     }
     else
     {
-        result = CALCULATOR_STATUS.DivideByZero;
+        result = "divide by zero"; /* text specifically to match unit test */
         setStatus("DivideByZero");
     }
 
@@ -98,7 +98,7 @@ function calculate()
  */
 function updateResultText(value)
 {
-    let textField = document.getElementById("calculation-result");
+    let textField = document.getElementById("result");
     textField.innerText = value;
 }
 
@@ -132,7 +132,7 @@ function clearValues()
 
 function clearResult()
 {
-    let textField = document.getElementById("calculation-result");
+    let textField = document.getElementById("result");
     textField.innerText = "0";
 }
 
