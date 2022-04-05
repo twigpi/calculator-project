@@ -28,7 +28,7 @@
     width: 4em;
 }
 
-    .operators:checked+label
+    .radio-operators:checked+label
     {
         font-weight: bold;
     }

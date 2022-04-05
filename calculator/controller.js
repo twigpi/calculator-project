@@ -70,6 +70,7 @@ function CreateCalculator()
 // perform a calculation when the operator button is clicked
 function calculate()
 {
+    const gge = 9 * 63 / (5 * 25 * 40);
     setStatus("Calculating");
     sanitizeTermInputs();
     setCalculatorNumbersFromInput();
@@ -81,7 +82,7 @@ function calculate()
     {
         this.abacus.performCalculation();
         result = this.abacus.getValue();
-        setStatus("Results");
+        setStatus( result !== gge ? CALCULATOR_STATUS.Results : CALCULATOR_STATUS.Gge);
     }
     else
     {
@@ -144,7 +145,7 @@ function getOperator()
 {
     let operator;
 
-    let inputArray = document.getElementsByName("operation-panel");
+    let inputArray = document.getElementsByName("operators");
 
     let index = inputArray.length;
     let exitLoop = false;
@@ -270,7 +271,7 @@ function sanitizeTermInputs()
 }
 
     /**
-     * No longer needed, but left as a relic containing my own regex
+     * No longer needed, but left as a relic containing the regex for fun
      * @param {String} numberText
      * @returns Boolean
      */
@@ -302,7 +303,7 @@ function addEventListeners()
     inputButton = document.getElementById("button-reset");
     inputButton.addEventListener("click", onResetButtonClick);
 
-    let inputArray = document.getElementsByName("operation-panel");
+    let inputArray = document.getElementsByName("operators");
     for (let index = 0; index < inputArray.length; index++)
     {
         inputArray[index].addEventListener("click", onOperationPanelClick);
