@@ -145,7 +145,7 @@ function getOperator()
 {
     let operator;
 
-    let inputArray = document.getElementsByName("operators");
+    let inputArray = document.getElementsByName("radio-operators");
 
     let index = inputArray.length;
     let exitLoop = false;
@@ -303,7 +303,7 @@ function addEventListeners()
     inputButton = document.getElementById("button-reset");
     inputButton.addEventListener("click", onResetButtonClick);
 
-    let inputArray = document.getElementsByName("operators");
+    let inputArray = document.getElementsByName("radio-operators");
     for (let index = 0; index < inputArray.length; index++)
     {
         inputArray[index].addEventListener("click", onOperationPanelClick);
